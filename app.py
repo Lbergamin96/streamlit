@@ -1,9 +1,9 @@
 import pandas as pd
-import scipy.stats
 import streamlit as st
 import time
+import numpy as np
 
-# estas são variáveis persistentes preservadas à medida que o Streamlin executa novamente esse script
+# estas são variáveis persistentes preservadas à medida que o Streamlit executa novamente esse script
 if 'experiment_no' not in st.session_state:
     st.session_state['experiment_no'] = 0
 
@@ -16,7 +16,8 @@ chart = st.line_chart([0.5])
 
 def toss_coin(n):
 
-    trial_outcomes = scipy.stats.bernoulli.rvs(p=0.5, size=n)
+    # substitui scipy.stats.bernoulli
+    trial_outcomes = np.random.binomial(1, 0.5, n)
 
     mean = None
     outcome_no = 0
